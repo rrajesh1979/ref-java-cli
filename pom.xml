@@ -46,6 +46,15 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <!-- detect OS classifier, needed for distribution Zip file -->
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>1.7.0</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -81,6 +90,45 @@
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>3.0.0-M5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jreleaser</groupId>
+                    <artifactId>jreleaser-maven-plugin</artifactId>
+                    <version>0.10.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>4.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                </plugin>
+                <plugin>
+                    <groupId>net.revelc.code.formatter</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>2.17.1</version>
+                    <configuration>
+                        <configFile>etc/eclipse-formatter-config.xml</configFile>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>net.revelc.code</groupId>
+                    <artifactId>impsort-maven-plugin</artifactId>
+                    <version>1.6.2</version>
+                    <configuration>
+                        <groups>java.,javax.,org.,com.</groups>
+                        <removeUnused>true</removeUnused>
+                        <staticAfter>true</staticAfter>
+                        <!-- <staticGroups>java.,javax.,org.w3c.,org.xml.,junit.</staticGroups> -->
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -136,6 +184,103 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <attach>false</attach>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>CheckSum${project.version}-${os.detected.classifier}</finalName>
+                    <outputDirectory>${app.distribution.directory}</outputDirectory>
+                    <workDirectory>${project.build.directory}/assembly/work</workDirectory>
+                    <skipAssembly>true</skipAssembly>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-distribution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-plugin-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[${java.version},)</version>
+                                </requireJavaVersion>
+                                <requirePluginVersions>
+                                    <banLatest>true</banLatest>
+                                    <banRelease>true</banRelease>
+                                    <banSnapshots>true</banSnapshots>
+                                    <phases>clean,deploy,site</phases>
+                                </requirePluginVersions>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <header>etc/license.txt</header>
+                    <strictCheck>true</strictCheck>
+                    <aggregate>true</aggregate>
+                    <excludes>
+                        <exclude>LICENSE.txt</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>format</id>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>net.revelc.code</groupId>
+                <artifactId>impsort-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sort-imports</id>
+                        <goals>
+                            <goal>sort</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -152,7 +297,6 @@
                     <plugin>
                         <groupId>org.graalvm.buildtools</groupId>
                         <artifactId>native-maven-plugin</artifactId>
-<!--                        <version>${native.maven.plugin.version}</version>-->
                         <extensions>true</extensions>
                         <executions>
                             <execution>
@@ -183,6 +327,108 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>dist</id>
+            <activation>
+                <property>
+                    <name>dist</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration combine.self="append">
+                            <skipAssembly>false</skipAssembly>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>dist-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <executable-suffix>.exe</executable-suffix>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jreleaser</groupId>
+                        <artifactId>jreleaser-maven-plugin</artifactId>
+                        <configuration>
+                            <jreleaser>
+                                <project>
+                                    <snapshot>
+                                        <label>{{ projectVersionNumber }}-early-access</label>
+                                    </snapshot>
+                                </project>
+                                <packagers>
+                                    <brew>
+                                        <active>RELEASE</active>
+                                        <continueOnError>true</continueOnError>
+                                        <multiPlatform>true</multiPlatform>
+                                    </brew>
+                                    <!--<sdkman>-->
+                                    <!--    <active>RELEASE</active>-->
+                                    <!--    <continueOnError>true</continueOnError>-->
+                                    <!--</sdkman>-->
+                                </packagers>
+                                <release>
+                                    <github>
+                                        <owner>rrajesh1979</owner>
+                                        <overwrite>true</overwrite>
+                                    </github>
+                                </release>
+                                <distributions>
+                                    <checksum>
+                                        <name>checksum</name>
+                                        <type>NATIVE_IMAGE</type>
+                                        <artifacts>
+                                            <artifact>
+                                                <path>{{artifactsDir}}/{{distributionName}}-{{projectVersion}}-linux-x86_64.tar.gz</path>
+                                                <transform>artifacts/{{distributionName}}-{{projectEffectiveVersion}}-linux-x86_64.tar.gz</transform>
+                                                <platform>linux-x86_64</platform>
+                                            </artifact>
+                                            <artifact>
+                                                <path>{{artifactsDir}}/{{distributionName}}-{{projectVersion}}-linux-x86_64.zip</path>
+                                                <transform>artifacts/{{distributionName}}-{{projectEffectiveVersion}}-linux-x86_64.zip</transform>
+                                                <platform>linux-x86_64</platform>
+                                            </artifact>
+                                            <artifact>
+                                                <path>{{artifactsDir}}/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip</path>
+                                                <transform>artifacts/{{distributionName}}-{{projectEffectiveVersion}}-windows-x86_64.zip</transform>
+                                                <platform>windows-x86_64</platform>
+                                            </artifact>
+                                            <artifact>
+                                                <path>{{artifactsDir}}/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip</path>
+                                                <transform>artifacts/{{distributionName}}-{{projectEffectiveVersion}}-osx-x86_64.zip</transform>
+                                                <platform>osx-x86_64</platform>
+                                            </artifact>
+                                        </artifacts>
+                                    </checksum>
+                                </distributions>
+                            </jreleaser>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
 </project>
