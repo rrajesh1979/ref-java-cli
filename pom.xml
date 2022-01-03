@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.rrajesh1979.demo</groupId>
+    <artifactId>ref-java-cli</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>ref-java-cli</name>
+
+    <description>ref-java-cli -- Reference Java CLI program - Jumpstart Repo Template</description>
+    <inceptionYear>2022</inceptionYear>
+    <url>https://github.com/rrajesh1979/ref-java-cli</url>
+
+    <developers>
+        <developer>
+            <id>rrajesh1979</id>
+            <name>Rajesh Rajagopalan</name>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+</project>
