@@ -29,6 +29,7 @@
     </licenses>
 
     <properties>
+        <mainClass>org.rrajesh1979.demo.CheckSum</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -36,6 +37,180 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <artifactsDir>target</artifactsDir>
         <executable-suffix/>
+
+        <graal.version>21.2.0</graal.version>
+        <native.maven.plugin.version>0.9.9</native.maven.plugin.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.graalvm.nativeimage</groupId>
+            <artifactId>svm</artifactId>
+            <version>${graal.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.graalvm.buildtools</groupId>
+                    <artifactId>native-maven-plugin</artifactId>
+                    <version>${native.maven.plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.graalvm.nativeimage</groupId>
+                    <artifactId>native-image-maven-plugin</artifactId>
+                    <version>${graal.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.2.4</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.graalvm.nativeimage</groupId>-->
+<!--                <artifactId>native-image-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <imageName>${project.name}</imageName>-->
+<!--                    <mainClass>${mainClass}</mainClass>-->
+<!--                    <buildArgs>-->
+<!--                        <buildArgs>-J&#45;&#45;add-exports=java.base/jdk.internal.module=ALL-UNNAMED</buildArgs>-->
+<!--                        <buildArgs>-H:+ReportUnsupportedElementsAtRuntime &#45;&#45;allow-incomplete-classpath</buildArgs>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>native-image</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>package</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <version>${native.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>build-native</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                    <execution>
+                        <id>release-native</id>
+                        <goals>
+                            <goal>release</goal>
+                        </goals>
+                        <phase>release</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <imageName>CheckSum-${project.version}</imageName>
+                    <mainClass>org.rrajesh1979.demo.CheckSum</mainClass>
+                    <buildArgs>
+                        <buildArg>--no-fallback</buildArg>
+                        <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+                        <buildArg>--verbose</buildArg>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                        <id>jar</id>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Sets the VM argument line used when unit tests are run. -->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${surefireArgLine}</argLine>
+                    <!--                    <argLine>-->
+                    <!--                        &#45;&#45;illegal-access=permit-->
+                    <!--                    </argLine>-->
+                </configuration>
+<!--                <configuration>-->
+<!--                    <excludedGroups>native-image</excludedGroups>-->
+<!--                </configuration>-->
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <groups>native-image</groups>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
