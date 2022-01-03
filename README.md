@@ -37,6 +37,7 @@ This is a reference implementation that can serve as a jumpstart application. Th
 [How to use](#how-to-use) •
 [Installation](#installation) •
 [Configuration](#configuration) •
+[GitPod Environment](#gitpod-environment) •
 [3rd Party Libraries](#3rd-party-libraries) •
 [Related](#related) •
 [License](#license) •
@@ -52,6 +53,9 @@ This is a reference implementation that can serve as a jumpstart application. Th
 ## Installation
 
 ## Configuration
+
+## GitPod Environment
+[![setup automated](https://img.shields.io/badge/Gitpod-ready_to_code-orange?logo=gitpod)](https://gitpod.io/from-referrer/)
 
 ## 3rd Party Libraries
 
