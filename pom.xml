@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.rrajesh1979.demo</groupId>
-    <artifactId>ref-java-cli</artifactId>
+    <artifactId>CheckSum</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ref-java-cli</name>
 
@@ -95,6 +95,31 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>3.3.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.0.0-M2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.9.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.jreleaser</groupId>
@@ -191,7 +216,7 @@
                 <configuration>
                     <attach>false</attach>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>CheckSum${project.version}-${os.detected.classifier}</finalName>
+                    <finalName>CheckSum-${project.version}-${os.detected.classifier}</finalName>
                     <outputDirectory>${app.distribution.directory}</outputDirectory>
                     <workDirectory>${project.build.directory}/assembly/work</workDirectory>
                     <skipAssembly>true</skipAssembly>
@@ -395,8 +420,8 @@
                                     </github>
                                 </release>
                                 <distributions>
-                                    <checksum>
-                                        <name>checksum</name>
+                                    <CheckSum>
+                                        <name>CheckSum</name>
                                         <type>NATIVE_IMAGE</type>
                                         <artifacts>
                                             <artifact>
@@ -420,7 +445,7 @@
                                                 <platform>osx-x86_64</platform>
                                             </artifact>
                                         </artifacts>
-                                    </checksum>
+                                    </CheckSum>
                                 </distributions>
                             </jreleaser>
                         </configuration>

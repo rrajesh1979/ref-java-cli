@@ -1,8 +1,8 @@
 package org.rrajesh1979.demo;
 
 import java.io.File;
-import java.math.BigInteger;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,8 +17,9 @@ public class CheckSum {
         }
         try {
             byte[] checkSum = getCheckSum(fileName);
-            System.out.printf("%0" + (checkSum.length*2) + "x%n", new BigInteger(1, checkSum));
-        } catch (IOException | NoSuchAlgorithmException e) {
+            System.out.printf("%0" + (checkSum.length * 2) + "x%n", new BigInteger(1, checkSum));
+        }
+        catch (IOException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
 
