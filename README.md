@@ -21,10 +21,11 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/rrajesh1979/ref-java-cli)
 ![GitHub watchers](https://img.shields.io/github/watchers/rrajesh1979/ref-java-cli)
 
-<a href = "https://github.com/rrajesh1979/ref-java-cli/graphs/contributors">
-<img src = "https://contrib.rocks/image?repo = rrajesh1979/ref-java-cli" alt="Contributors"/>
+<a href="https://github.com/rrajesh1979/ref-java-cli/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=rrajesh1979/ref-java-cli"  alt="Contributors"/>
 </a>
-Made with [contributors-img](https://contrib.rocks).
+
+Made with [contrib.rocks](https://contrib.rocks).
 
 This is a reference implementation that can serve as a jumpstart application. This is built and uses
 . Java
