@@ -33,7 +33,7 @@
 		<file>
 			<source>${project.build.directory}/${project.artifactId}-${project.version}${executable-suffix}</source>
 			<outputDirectory>./bin</outputDirectory>
-			<destName>MyCheckSum${executable-suffix}</destName>
+			<destName>mychecksum${executable-suffix}</destName>
 		</file>
 	</files>
 </assembly>

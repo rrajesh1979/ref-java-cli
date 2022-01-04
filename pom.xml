@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.rrajesh1979.demo</groupId>
-    <artifactId>MyCheckSum</artifactId>
+    <artifactId>mychecksum</artifactId>
     <version>0.0.4</version>
     <name>ref-java-cli</name>
 
@@ -216,7 +216,7 @@
                 <configuration>
                     <attach>false</attach>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>MyCheckSum-${project.version}-${os.detected.classifier}</finalName>
+                    <finalName>mychecksum-${project.version}-${os.detected.classifier}</finalName>
                     <outputDirectory>${app.distribution.directory}</outputDirectory>
                     <workDirectory>${project.build.directory}/assembly/work</workDirectory>
                     <skipAssembly>true</skipAssembly>
@@ -340,7 +340,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <imageName>MyCheckSum-${project.version}</imageName>
+                            <imageName>mychecksum-${project.version}</imageName>
                             <mainClass>org.rrajesh1979.demo.MyCheckSum</mainClass>
                             <buildArgs>
                                 <buildArg>--no-fallback</buildArg>
@@ -420,8 +420,8 @@
                                     </github>
                                 </release>
                                 <distributions>
-                                    <MyCheckSum>
-                                        <name>MyCheckSum</name>
+                                    <mychecksum>
+                                        <name>mychecksum</name>
                                         <type>NATIVE_IMAGE</type>
                                         <artifacts>
                                             <artifact>
@@ -445,7 +445,7 @@
                                                 <platform>osx-x86_64</platform>
                                             </artifact>
                                         </artifacts>
-                                    </MyCheckSum>
+                                    </mychecksum>
                                 </distributions>
                             </jreleaser>
                         </configuration>
