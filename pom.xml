@@ -6,7 +6,7 @@
 
     <groupId>org.rrajesh1979.demo</groupId>
     <artifactId>mychecksum</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <name>ref-java-cli</name>
 
     <description>ref-java-cli -- Reference Java CLI program - Jumpstart Repo Template</description>
