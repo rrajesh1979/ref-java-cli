@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.rrajesh1979.demo</groupId>
-    <artifactId>CheckSum</artifactId>
+    <artifactId>MyCheckSum</artifactId>
     <version>0.0.4-SNAPSHOT</version>
     <name>ref-java-cli</name>
 
@@ -29,7 +29,7 @@
     </licenses>
 
     <properties>
-        <mainClass>org.rrajesh1979.demo.CheckSum</mainClass>
+        <mainClass>org.rrajesh1979.demo.MyCheckSum</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
@@ -216,7 +216,7 @@
                 <configuration>
                     <attach>false</attach>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>CheckSum-${project.version}-${os.detected.classifier}</finalName>
+                    <finalName>MyCheckSum-${project.version}-${os.detected.classifier}</finalName>
                     <outputDirectory>${app.distribution.directory}</outputDirectory>
                     <workDirectory>${project.build.directory}/assembly/work</workDirectory>
                     <skipAssembly>true</skipAssembly>
@@ -340,8 +340,8 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <imageName>CheckSum-${project.version}</imageName>
-                            <mainClass>org.rrajesh1979.demo.CheckSum</mainClass>
+                            <imageName>MyCheckSum-${project.version}</imageName>
+                            <mainClass>org.rrajesh1979.demo.MyCheckSum</mainClass>
                             <buildArgs>
                                 <buildArg>--no-fallback</buildArg>
                                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
@@ -420,8 +420,8 @@
                                     </github>
                                 </release>
                                 <distributions>
-                                    <CheckSum>
-                                        <name>CheckSum</name>
+                                    <MyCheckSum>
+                                        <name>MyCheckSum</name>
                                         <type>NATIVE_IMAGE</type>
                                         <artifacts>
                                             <artifact>
@@ -445,7 +445,7 @@
                                                 <platform>osx-x86_64</platform>
                                             </artifact>
                                         </artifacts>
-                                    </CheckSum>
+                                    </MyCheckSum>
                                 </distributions>
                             </jreleaser>
                         </configuration>

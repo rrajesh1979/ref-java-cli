@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class CheckSum {
+public class MyCheckSum {
     static String algorithm = "MD5";
 
     public static void main(String[] args) {

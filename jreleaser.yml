@@ -15,7 +15,7 @@
 #
 
 project:
-  name: CheckSum
+  name: MyCheckSum
   description: Reference Java CLI program - Jumpstart Repo Template
   longDescription: Reference Java CLI program - Jumpstart Repo Template
   website: https://github.com/rrajesh1979/ref-java-cli
