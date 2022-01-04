@@ -23,17 +23,23 @@ import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class MyCheckSum {
     static String algorithm = "MD5";
 
     public static void main(String[] args) {
+        log.info("Hello from MyCheckSum");
+
         String fileName = "";
         if (args.length > 0) {
             fileName = args[0];
         }
         try {
-            byte[] checkSum = getCheckSum(fileName);
-            System.out.printf("%0" + (checkSum.length * 2) + "x%n", new BigInteger(1, checkSum));
+            String checkSum = getCheckSum(fileName);
+            // System.out.printf("%0" + (checkSum.length * 2) + "x%n", new BigInteger(1, checkSum));
+            log.info("CheckSum of file {} is : {}", fileName, checkSum);
         }
         catch (IOException | NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -41,10 +47,14 @@ public class MyCheckSum {
 
     }
 
-    public static byte[] getCheckSum(String fileName) throws IOException, NoSuchAlgorithmException {
+    public static String getCheckSum(String fileName) throws IOException, NoSuchAlgorithmException {
         File file = new File(fileName);
         byte[] fileContents = Files.readAllBytes(file.toPath());
         byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
-        return digest;
+
+        String checkSum;
+        checkSum = new BigInteger(digest).toString(16);
+
+        return checkSum;
     }
 }

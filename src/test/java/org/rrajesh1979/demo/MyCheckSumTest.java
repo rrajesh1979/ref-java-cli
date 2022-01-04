@@ -16,7 +16,6 @@
 package org.rrajesh1979.demo;
 
 import java.io.*;
-import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 
 import org.junit.jupiter.api.Test;
@@ -33,8 +32,8 @@ class MyCheckSumTest {
     void getCheckSum() throws IOException, NoSuchAlgorithmException {
         File tempFile = createTempDataFile();
 
-        byte[] checkSumBytes = MyCheckSum.getCheckSum(tempFile.getAbsolutePath());
-        String calculatedCheckSum = new BigInteger(checkSumBytes).toString(16);
+        String calculatedCheckSum = MyCheckSum.getCheckSum(tempFile.getAbsolutePath());
+        // String calculatedCheckSum = new BigInteger(checkSumBytes).toString(16);
 
         tempFile.delete();
         String expectedCheckSum = "764efa883dda1e11db47671c4a3bbd9e";

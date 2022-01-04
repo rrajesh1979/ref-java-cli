@@ -59,6 +59,9 @@
 
         <spock.version>2.1-M2-groovy-3.0</spock.version>
         <junit.version>5.8.2</junit.version>
+
+        <logback-classic.version>1.2.7</logback-classic.version>
+        <lombok.version>1.18.22</lombok.version>
     </properties>
 
     <dependencies>
@@ -69,6 +72,20 @@
             <version>${spock.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy -->
 <!--        <dependency>-->
@@ -549,6 +566,7 @@
                             <imageName>mychecksum-${project.version}</imageName>
                             <mainClass>org.rrajesh1979.demo.MyCheckSum</mainClass>
                             <buildArgs>
+                                <buildArg>--allow-incomplete-classpath</buildArg>
                                 <buildArg>--no-fallback</buildArg>
                                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
                                 <buildArg>--verbose</buildArg>
