@@ -243,9 +243,3 @@ jobs:
 #          git commit -a -m "⬆️  Next version $NEXT_VERSION"
 #          git push origin HEAD:master
 #          echo "removed: origin HEAD:master"
-
-      - name: 'Upload coverage to Codecov'
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          verbose: true
