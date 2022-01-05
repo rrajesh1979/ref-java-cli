@@ -30,20 +30,20 @@ class MyCheckSumTest {
 
     @Test
     void getCheckSum() throws IOException, NoSuchAlgorithmException {
-        // File tempFile = createTempDataFile();
-        //
-        // String calculatedCheckSum = MyCheckSum.getCheckSum(tempFile.getAbsolutePath());
-        // // String calculatedCheckSum = new BigInteger(checkSumBytes).toString(16);
-        //
-        // tempFile.delete();
-        // String expectedCheckSum = "764efa883dda1e11db47671c4a3bbd9e";
-        // assertEquals(expectedCheckSum, calculatedCheckSum);
+        System.out.println("Testing getCheckSum");
+        File tempFile = createTempDataFile();
+        String calculatedCheckSum = new MyCheckSum().getCheckSum(tempFile);
+        tempFile.delete();
+        String expectedCheckSum = "f0ef7081e1539ac00ef5b761b4fb01b3";
+        System.out.println("Calculated CheckSum : " + calculatedCheckSum);
+        System.out.println("Expected CheckSum : " + expectedCheckSum);
+        assertEquals(expectedCheckSum, calculatedCheckSum);
     }
 
     static File createTempDataFile() throws IOException {
         File tempFile = File.createTempFile("checksum", "test");
         try (FileOutputStream fileOutputStream = new FileOutputStream(tempFile)) {
-            fileOutputStream.write("hi\n".getBytes());
+            fileOutputStream.write("Hello world\n".getBytes());
             fileOutputStream.flush();
         }
         return tempFile;
