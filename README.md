@@ -44,7 +44,7 @@ Made with [contrib.rocks](https://contrib.rocks).
 </div>
 
 <div>
-This is a reference implementation that can serve as a jumpstart application. This is built and uses
+This is a reference implementation that can serve as a jumpstart application. This reference GitHub repo is built using
 <ul>
     <li>Java</li>
     <li>Maven</li>
