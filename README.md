@@ -34,6 +34,7 @@ This is a reference implementation that can serve as a jumpstart application. Th
 . Maven
 . Picocli
 . JReleaser
+. Code Quality tools
 . GitHub Actions and Workflows
 . GitPod environment
 . Spock and JUnit tests
@@ -48,6 +49,7 @@ This is a reference implementation that can serve as a jumpstart application. Th
 [3rd Party Libraries](#3rd-party-libraries) •
 [Related](#related) •
 [License](#license) •
+[Code Quality](#code-quality) •
   
 </div>
 
@@ -72,3 +74,8 @@ This is a reference implementation that can serve as a jumpstart application. Th
 
 ![GitHub](https://img.shields.io/github/license/rrajesh1979/ref-java-cli)
 
+## Code Quality
+
+[![codecov](https://codecov.io/gh/rrajesh1979/ref-java-cli/branch/master/graph/badge.svg?token=nuivwdrnL1)](https://codecov.io/gh/rrajesh1979/ref-java-cli)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/6bfbafbfd54e673b5a0b/maintainability)](https://codeclimate.com/github/rrajesh1979/ref-java-cli/maintainability)
