@@ -12,6 +12,7 @@
 # Reference Java CLI program - Jumpstart Repo Template
 
 [![Release](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/release.yml/badge.svg)](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/release.yml)
+[![Code quality checks](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/code-quality-checks.yml/badge.svg?branch=master)](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/code-quality-checks.yml)
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/rrajesh1979/ref-java-cli)
 
