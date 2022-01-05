@@ -43,8 +43,9 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 </div>
 
+## Key Features
 <div>
-This is a reference implementation that can serve as a jumpstart application. This reference GitHub repo is built using
+This is a reference implementation that can serve as a jump start application. This reference GitHub repo is built using
 <ul>
     <li>Java</li>
     <li>Maven</li>
@@ -55,13 +56,54 @@ This is a reference implementation that can serve as a jumpstart application. Th
     <li>GitPod environment</li>
     <li>Spock and JUnit tests</li>
     <li>Using Git Emojis</li>
-</ul> 
-
+</ul>
 </div>
 
-## Key Features
-
 ## Getting started
+
+Once you have build and released the application, you can use the following commands to deploy the application to your Mac, Linux or Windows machine.
+This is powered by GraalVM native image and distribution using JReleaser and GitHub Actions and Workflow.
+```shell
+# Substitute your username
+# Deploy to Mac
+brew tap rrajesh1979/tap
+brew install mychecksum
+```
+
+Once installed you can invoke mychecksum with the file name and algorithm as shown below.
+
+Invoking the command displays the usage information as shown below. This is powered by Picocli.
+```shell
+mychecksum
+11:01:36.098 [main] INFO org.rrajesh1979.demo.MyCheckSum - Hello from MyCheckSum
+Missing required parameter: '<file>'
+Usage: mychecksum [-hV] [-a=<algorithm>] <file>
+Prints the checksum (MD5 by default) of a file to STDOUT.
+      <file>      The file whose checksum to calculate.
+  -a, --algorithm=<algorithm>
+                  MD5, SHA-1, SHA-256, ...
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+```
+
+Some valid commands are shown below.
+```shell
+mychecksum hello.txt
+11:09:40.116 [main] INFO org.rrajesh1979.demo.MyCheckSum - Hello from MyCheckSum
+11:09:40.137 [main] INFO org.rrajesh1979.demo.MyCheckSum - Checksum of file hello.txt, is : f0ef7081e1539ac00ef5b761b4fb01b3
+```
+
+```shell
+mychecksum hello.txt -a MD5
+11:09:50.123 [main] INFO org.rrajesh1979.demo.MyCheckSum - Hello from MyCheckSum
+11:09:50.151 [main] INFO org.rrajesh1979.demo.MyCheckSum - Checksum of file hello.txt, is : f0ef7081e1539ac00ef5b761b4fb01b3
+```
+
+```shell
+mychecksum hello.txt -a SHA-256
+11:10:10.578 [main] INFO org.rrajesh1979.demo.MyCheckSum - Hello from MyCheckSum
+11:10:10.591 [main] INFO org.rrajesh1979.demo.MyCheckSum - Checksum of file hello.txt, is : 1894a19c85ba153acbf743ac4e43fc004c891604b26f8c69e1e83ea2afc7c48f
+```
 
 ## How to use
 
