@@ -30,17 +30,6 @@
 
 Made with [contrib.rocks](https://contrib.rocks).
 
-This is a reference implementation that can serve as a jumpstart application. This is built and uses
-. Java
-. Maven
-. Picocli
-. JReleaser
-. Code Quality tools
-. GitHub Actions and Workflows
-. GitPod environment
-. Spock and JUnit tests
-. Using Git Emojis
-
 [Key Features](#key-features) •
 [Getting started](#getting-started) •
 [How to use](#how-to-use) •
@@ -51,7 +40,23 @@ This is a reference implementation that can serve as a jumpstart application. Th
 [Related](#related) •
 [License](#license) •
 [Code Quality](#code-quality) •
-  
+
+</div>
+
+<div>
+This is a reference implementation that can serve as a jumpstart application. This is built and uses
+<ul>
+    <li>Java</li>
+    <li>Maven</li>
+    <li>JReleaser</li>
+    <li>Picocli</li>
+    <li>Code Quality tools</li>
+    <li>GitHub Actions and Workflows</li>
+    <li>GitPod environment</li>
+    <li>Spock and JUnit tests</li>
+    <li>Using Git Emojis</li>
+</ul> 
+
 </div>
 
 ## Key Features
