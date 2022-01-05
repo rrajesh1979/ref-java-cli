@@ -108,15 +108,20 @@ You can fork this repository and build your own reference implementation.
 
 ## Configuration
 Following needs to be done to build the reference implementation.
-<ul>
-    <li>Maven pom.xml with required application name, mainClass and other personalization</li>
-    <li>JReleaser config: jreleaser.yml</li>
-    <li>CodeCov - CODECOV_TOKEN in repository secrets</li>
-    <li>CodeClimate - CODECLIMATE_TOKEN in repository secrets</li>
-    <li>Release Token RELEASE_TOKEN in repository secrets</li>
-    <li>GitHub Actions and Workflows: release.yml</li>
-    <li>GitHub Actions and Workflows: code-quality-checks.yml</li>
-</ul>
+> Maven pom.xml with required 
+>> application name, mainClass and other personalization
+
+> JReleaser config: jreleaser.yml
+
+> CodeCov - CODECOV_TOKEN in repository secrets
+
+> CodeClimate - CODECLIMATE_TOKEN in repository secrets
+
+> Release Token RELEASE_TOKEN in repository secrets
+
+> GitHub Actions and Workflows: release.yml
+
+> GitHub Actions and Workflows: code-quality-checks.yml
 
 ## GitPod Environment
 Fork and develop online using this ready to use GitPod environment.
