@@ -33,11 +33,9 @@ Made with [contrib.rocks](https://contrib.rocks).
 [Key Features](#key-features) •
 [Getting started](#getting-started) •
 [How to use](#how-to-use) •
-[Installation](#installation) •
 [Configuration](#configuration) •
+[Related projects](#related-projects) •
 [GitPod Environment](#gitpod-environment) •
-[3rd Party Libraries](#3rd-party-libraries) •
-[Related](#related) •
 [License](#license) •
 [Code Quality](#code-quality) •
 
@@ -106,17 +104,27 @@ mychecksum hello.txt -a SHA-256
 ```
 
 ## How to use
-
-## Installation
+You can fork this repository and build your own reference implementation.
 
 ## Configuration
+Following needs to be done to build the reference implementation.
+<ul>
+    <li>Maven pom.xml with required application name, mainClass and other personalization</li>
+    <li>JReleaser config: jreleaser.yml</li>
+    <li>CodeCov - CODECOV_TOKEN in repository secrets</li>
+    <li>CodeClimate - CODECLIMATE_TOKEN in repository secrets</li>
+    <li>Release Token RELEASE_TOKEN in repository secrets</li>
+    <li>GitHub Actions and Workflows: release.yml</li>
+    <li>GitHub Actions and Workflows: code-quality-checks.yml</li>
+</ul>
 
 ## GitPod Environment
+Fork and develop online using this ready to use GitPod environment.
+
 [![setup automated](https://img.shields.io/badge/Gitpod-ready_to_code-orange?logo=gitpod)](https://gitpod.io/from-referrer/)
 
-## 3rd Party Libraries
+## Related projects
 
-## Related
 
 ## License
 
