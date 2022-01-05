@@ -233,13 +233,13 @@ jobs:
             target/jreleaser/trace.log
             target/jreleaser/output.properties
 
-      - name: 'Set next version'
-        env:
-          NEXT_VERSION: ${{ steps.version.outputs.NEXT_VERSION }}
-        run: |
-          ./mvnw -B versions:set versions:commit -DnewVersion=$NEXT_VERSION
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "GitHub Action"
-          git commit -a -m "⬆️  Next version $NEXT_VERSION"
-          git push origin HEAD:master
-          echo "removed: origin HEAD:master"
+#      - name: 'Set next version'
+#        env:
+#          NEXT_VERSION: ${{ steps.version.outputs.NEXT_VERSION }}
+#        run: |
+#          ./mvnw -B versions:set versions:commit -DnewVersion=$NEXT_VERSION
+#          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#          git config --global user.name "GitHub Action"
+#          git commit -a -m "⬆️  Next version $NEXT_VERSION"
+#          git push origin HEAD:master
+#          echo "removed: origin HEAD:master"
