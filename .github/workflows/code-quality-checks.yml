@@ -54,4 +54,4 @@ jobs:
           JACOCO_SOURCE_PATH: "${{github.workspace}}/src/main/java"
         with:
           coverageCommand: mvn verify
-          coverageLocations: ${{github.workspace}}/target/site/jacoco-it/jacoco.xml:jacoco
+          coverageLocations: ${{github.workspace}}/target/site/jacoco-ut/jacoco.xml:jacoco
