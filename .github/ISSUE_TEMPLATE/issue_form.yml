@@ -32,20 +32,20 @@ body:
       label: Version
       description: What version of our software are you running?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - 0.0.11 (Default)
+        - 0.0.8 (Edge)
     validations:
       required: true
   - type: dropdown
     id: browsers
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: What Operating Systems are you seeing the problem on?
       multiple: true
       options:
-        - Firefox
-        - Chrome
-        - Safari
-        - Microsoft Edge
+        - MacOS
+        - Linux
+        - Windows
+        - Other
   - type: textarea
     id: logs
     attributes:
