@@ -1,5 +1,11 @@
 name: Code quality checks
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 jobs:
   Code-Quality-Checks:
     runs-on: ubuntu-latest
@@ -14,9 +20,27 @@ jobs:
         with:
           java-version: 17
 
-      - name: 'Maven Build'
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: 'Build and analyze'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ./mvnw -B --file pom.xml verify
+#          ./mvnw -B --file pom.xml verify
+          ./mvnw -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rrajesh1979_ref-java-cli
 
       - name: 'Upload coverage to Codecov'
         uses: codecov/codecov-action@v2
