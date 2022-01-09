@@ -14,6 +14,8 @@
 [![Release](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/release.yml/badge.svg)](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/release.yml)
 [![Code quality checks](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/code-quality-checks.yml/badge.svg?branch=master)](https://github.com/rrajesh1979/ref-java-cli/actions/workflows/code-quality-checks.yml)
 
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=rrajesh1979_ref-java-cli)
+
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/rrajesh1979/ref-java-cli)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/rrajesh1979/ref-java-cli)
