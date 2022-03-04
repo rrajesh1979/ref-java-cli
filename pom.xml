@@ -63,7 +63,7 @@
         <logback-classic.version>1.2.10</logback-classic.version>
         <lombok.version>1.18.22</lombok.version>
 
-        <picocli.version>4.6.2</picocli.version>
+        <picocli.version>4.6.3</picocli.version>
 
         <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.it.execution.data.file>
         <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
