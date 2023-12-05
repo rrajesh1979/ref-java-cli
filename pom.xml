@@ -60,7 +60,7 @@
         <spock.version>2.1-M2-groovy-3.0</spock.version>
         <junit.version>5.8.2</junit.version>
 
-        <logback-classic.version>1.2.10</logback-classic.version>
+        <logback-classic.version>1.2.13</logback-classic.version>
         <lombok.version>1.18.22</lombok.version>
 
         <picocli.version>4.6.2</picocli.version>
